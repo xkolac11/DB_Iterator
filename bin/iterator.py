@@ -3,27 +3,42 @@
 from pymongo import Connection
 
 db_connection = Connection('localhost')
-search_params = "weight > 30", "name = orange"
+
+search_params = {"weight": {'$gt' : 10}, "item": "apple"} #priklad
 
 class project:
 
 	def __init__(self,db_connection,search_params):
+
+		db = db_connection.export
+		self.params = search_params
+		
+		self.set_search_params(self.params)
+		
+		self.find_all_projects(db)
+		
+		
+	def set_search_params(self,search_params):
+		pass
+
+	def get_search_params(self):
+		return search_params
+
+	def find_all_projects(self,db):
+		
 		"""
-		Pripojeni k databazi, zpracovani search_params
+		load=[]
+		
+		target = db.find(search_params).limit(20)
+		for item in target:
+			load.append(item)
+		
+		for i in load:
+			yield i
 		"""
-		db = db_connection['example']
-		print search_params
-
-	def set_search_params(search_params):
 		pass
-
-	def get_search_params():
-		pass
-
-	def find_all_projects():
-		pass
-
-
+	
+	
 # end of class project
 
 #zavolame tridu pro testovani

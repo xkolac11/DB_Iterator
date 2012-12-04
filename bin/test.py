@@ -6,15 +6,16 @@
 	@email xkolac11@stud.fit.vutbr.cz
 """
 
-from pymongo import Connection
+from pymongo import *
 import random
 
 #connection to database 'example'
 connection = Connection('localhost') 
-db = connection['example']
+db = connection.example
 
 #delete all from collection'export'
 db.export.remove()
+
 
 fruits=['apple','pear','banana','orange','peach','apricot','strawberry','raspberry','kiwi','cherry','blueberry','mango','grapes','plum','lemon','ananas']
 countries=['CZE','ESP','ITA','FRA','ENG','GER','GRE','SVK','PLN','FIN','SWE','MAL','CRO','SLO']
@@ -26,14 +27,17 @@ while (i != 100):
 	kilos = random.randint(1,100)
 	fr = fruits[fruit]
 	ctr = countries[country]
-	db.export.save({"item": fr, "country": ctr, "weight": kilos})
+	db.export.insert({ '_id': i, 'item': fr, 'country': ctr, 'weight': kilos})
 	i = i + 1
 
-#uncomment to print inserted items
-"""
-target = db.export.find()
+#uncomment to print inserted items (with some defined query)
+#"""
+target = db.export.find({ 'weight': 50 })
+j = 0
 for x in target:
+	j += 1
 	print x
 
+print "query count",j
 print db.export.count()
-"""
+#"""

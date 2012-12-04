@@ -2,44 +2,41 @@
 # -*- coding: utf-8 -*-
 from pymongo import Connection
 
-db_connection = Connection('localhost')
+connection = Connection('localhost')
+db_connection = connection.example
 
-search_params = {"weight": {'$gt' : 10}, "item": "apple"} #priklad
 
 class project:
 
-	def __init__(self,db_connection,search_params):
-
-		db = db_connection.export
-		self.params = search_params
-		
-		self.set_search_params(self.params)
-		
-		self.find_all_projects(db)
-		
+	test={}
+	
+	def __init__(self, db_connection, search_params, database):
+		self._database = database
+		self._db_connection = db_connection
+		self.set_search_params(search_params)
+		self.load=[]
 		
 	def set_search_params(self,search_params):
-		pass
+		self.test = search_params
 
 	def get_search_params(self):
-		return search_params
+		return self.test
 
-	def find_all_projects(self,db):
-		
-		"""
-		load=[]
-		
-		target = db.find(search_params).limit(20)
+	def find_all_projects(self):
+			
+		db = self._db_connection[self._database]
+
+		target = db.find(self.test).limit(20)
 		for item in target:
-			load.append(item)
+			yield (item)
 		
-		for i in load:
-			yield i
-		"""
-		pass
+
 	
 	
 # end of class project
 
 #zavolame tridu pro testovani
-project(db_connection,search_params)
+obj = project(db_connection, {"weight": {'$gt' : 10}, "item": "apple"}, "export")
+for var in obj.find_all_projects():
+  print var
+  

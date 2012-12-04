@@ -9,12 +9,12 @@ db_connection = connection.example
 class project:
 
 	test={}
+	array = []
 	
 	def __init__(self, db_connection, search_params, database):
 		self._database = database
 		self._db_connection = db_connection
 		self.set_search_params(search_params)
-		self.load=[]
 		
 	def set_search_params(self,search_params):
 		self.test = search_params
@@ -28,6 +28,7 @@ class project:
 
 		target = db.find(self.test).limit(20)
 		for item in target:
+			self.array.append(item)
 			yield (item)
 		
 

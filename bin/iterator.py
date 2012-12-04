@@ -4,12 +4,13 @@ from pymongo import Connection
 
 connection = Connection('localhost')
 db_connection = connection.example
+search_params = {"weight": {'$gt' : 10}} #dict
 
 
 class project:
 
 	test={}
-	array = []
+	array=[]
 	
 	def __init__(self, db_connection, search_params, database):
 		self._database = database
@@ -30,14 +31,12 @@ class project:
 		for item in target:
 			self.array.append(item)
 			yield (item)
-		
-
-	
+			
 	
 # end of class project
 
 #zavolame tridu pro testovani
-obj = project(db_connection, {"weight": {'$gt' : 10}, "item": "apple"}, "export")
+obj = project(db_connection, search_params, "export")
 for var in obj.find_all_projects():
   print var
   

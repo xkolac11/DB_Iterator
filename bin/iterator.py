@@ -1,24 +1,30 @@
+#! /usr/bin/python
+# -*- coding: utf-8 -*-
+from pymongo import Connection
+
+db_connection = Connection('localhost')
+search_params = "weight > 30", "name = orange"
+
 class project:
 
+	def __init__(self,db_connection,search_params):
+		"""
+		Pripojeni k databazi, zpracovani search_params
+		"""
+		db = db_connection['example']
+		print search_params
 
-	def __init__(self):
-	
-	# end of __init__
-	
+	def set_search_params(search_params):
+		pass
 
-	def set_search_params(""" params """):
-	
-	# end of set_search_params
-	
+	def get_search_params():
+		pass
 
-	def get_search_params(""" params """):
-	
-	# end of get_search_params
-	
-
-	def find_all_projects(""" params """):
-	
-	#end of find_all_projects
+	def find_all_projects():
+		pass
 
 
 # end of class project
+
+#zavolame tridu pro testovani
+project(db_connection,search_params)

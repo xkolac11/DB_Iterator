@@ -32,14 +32,13 @@ class project:
 		varskip = 0
 		varlimit = 20
 		
-		while varlimit <= fin:
+		while varskip <= fin:
 		
 			target = db.find(self.test).limit(varlimit).skip(varskip)
 			for item in target:
 				self.array.append(item)
 				yield (item)
-
-			varlimit += 20
+			
 			varskip += 20
 	
 # end of class project

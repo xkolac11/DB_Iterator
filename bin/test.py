@@ -32,7 +32,7 @@ while (i != 100):
 
 #uncomment to print inserted items (with some defined query)
 #"""
-target = db.export.find({ 'weight': 50 })
+target = db.export.find({ 'weight': 10 })
 j = 0
 for x in target:
 	j += 1

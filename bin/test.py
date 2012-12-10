@@ -1,9 +1,11 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
 
-""" file that inserts random data to database example
-	@author Petr Kolacek
-	@email xkolac11@stud.fit.vutbr.cz
+""" 
+@author Petr Kolacek
+@email xkolac11@stud.fit.vutbr.cz
+
+Inserts random data into database.
 """
 
 from pymongo import *
@@ -30,8 +32,8 @@ while (i != 100):
 	db.export.insert({ '_id': i, 'item': fr, 'country': ctr, 'weight': kilos})
 	i = i + 1
 
-#uncomment to print inserted items (with some defined query)
-#"""
+#uncomment to print inserted items
+"""
 target = db.export.find({ 'weight': 10 })
 j = 0
 for x in target:
@@ -40,4 +42,4 @@ for x in target:
 
 print "query count",j
 print db.export.count()
-#"""
+"""

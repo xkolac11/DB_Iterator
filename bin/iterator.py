@@ -4,7 +4,6 @@ from pymongo import Connection
 
 connection = Connection('localhost')
 db_connection = connection.example
-search_params = {"weight": {'$gt' : 10}} #dict
 
 
 class project:
@@ -57,10 +56,5 @@ class project:
 			varskip += varlimit
 	
 # end of class project
-
-# testing
-obj = project(db_connection, search_params, "export")
-for var in obj.find_all_projects():
-	print var
 
   

@@ -27,16 +27,26 @@ class project:
 			
 		db = self._db_connection[self._database]
 
-		target = db.find(self.test).limit(20)
-		for item in target:
-			self.array.append(item)
-			yield (item)
-			
+		fin = db.count()
+		
+		varskip = 0
+		varlimit = 20
+		
+		while varlimit <= fin:
+		
+			target = db.find(self.test).limit(varlimit).skip(varskip)
+			for item in target:
+				self.array.append(item)
+				yield (item)
+
+			varlimit += 20
+			varskip += 20
 	
 # end of class project
 
 #zavolame tridu pro testovani
 obj = project(db_connection, search_params, "export")
 for var in obj.find_all_projects():
-  print var
+	print var
+
   

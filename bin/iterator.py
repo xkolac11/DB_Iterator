@@ -1,5 +1,6 @@
 #! /usr/bin/python
 # -*- coding: utf-8 -*-
+
 from pymongo import Connection
 
 connection = Connection('localhost')
@@ -8,8 +9,13 @@ db_connection = connection.example
 
 class project:
 
-	test={}
-	array=[]
+	"""
+	Class encapsulates behavior of iterator.
+	It's used to work out some mongoDB database from begin to end.
+	"""
+
+	test={} #:Testing variable.
+	array=[] #:Inner class array, where items from database are saved.
 	
 	def __init__(self, db_connection, search_params, database):	
 		"""
